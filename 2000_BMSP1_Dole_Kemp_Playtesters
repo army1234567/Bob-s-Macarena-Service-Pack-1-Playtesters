@@ -1,107 +1,3 @@
-$("#game_window")[0].style.backgroundColor = "#D4D0C8"
-const customStyling = document.createElement("style");
-customStyling.innerHTML = `
-
-#campaign_sign {
-    background-image: url("https://files.catbox.moe/sd918s.png");
-    background-size: cover;
-    border-color: #c9c9c9;    
-    border-width: .01em;
-    margin: 0 auto;
-    background-position: center;
-    width: 100%; 
-    height: 104px; 
-    margin-left: -0.07em;
-  }
-#campaign_sign p {
-    color: rgb(0 0 0 / 0%);
-}
-.inner_window_sign_display {
-  margin: 0;
-    margin-right: 0px;
-    margin-left: 0px;
-  height: 25%;
-  position: relative;
-  width: 34%;
-  height: 28%;
-  background-color: #D4D0C8;
-  margin-left: auto;
-  margin-right: auto;
-  border-style: double;
-  border-color: #C9C9C9;
-}
-#answer_list {
-  height: 25%;
-}
-#state_info {
-  margin: 5% 0 0;
-  height: 132%;
-  background-color: #F8F8F8;
-  border-style: double;
-  border-color: #C9C9C9;
-}
-.inner_window_question {
-  background-color: #F8F8F8;
-  margin: 0
-  padding-top: .3em;
-  border-style: double;
-  border-color: #C9C9C9;
-  text-align: center;
-  height: 50%;
-  position: relative;
-  clear: both;
-}
-#menu_container {
-  background-color: #D4D0C8;
-}
-#overall_result_container {
-  background-color: #D4D0C8;
-}
-#state_info h3 {
-  background-color: #7C9CCC;
-}
-#overall_result h3 {
-  background-color: #7C9CCC;
-}
-#state_result h3 {
-  background-color: #7C9CCC;
-}`
-document.head.appendChild(customStyling);
-
-let style = document.createElement('style');
-style.type = 'text/css';
-style.id = 'dynamic-style';
-
-style.innerHTML = `
-  .inner_window_question h3 {
-    background-color: #E9E7E3;
-  }
-  .overlay_window h3 {
-    background-color: #7C9CCC;
-  }
-`;
-
-document.head.appendChild(style);
-
-// Function to inject custom font and apply it to <p> elements
-function applyCustomFont(fontName, fontUrl) {
-    // Inject @font-face rule into the document
-    const style = document.createElement("style");
-    style.innerHTML = `
-        @font-face {
-            font-family: '${fontName}';
-            src: url('${fontUrl}') format('opentype');
-        }
-        b {
-            font-family: '${fontName}', sans-serif !important;
-        }
-    `;
-    document.head.appendChild(style);
-}
-
-// Apply custom font from an OTF file URL
-applyCustomFont("CustomOTFFont", "https://files.catbox.moe/at34sp.otf"); // Replace with actual OTF URL
-
 // Questions oooh
 
 
@@ -885,7 +781,7 @@ campaignTrail_temp.answers_json = [
         "pk": 3465,
         "fields": {
             "question": 384,
-            "description": "<b>Not a lot of people are proposing this, but what about ramping up foreign aid funds to the post-Soviet republics?  It's only been 9 years since most have been sovereign, and Bob Dole knows that they still need help establishing themselves. This money can help align them towards our global cause of defending and spreading democracy.</b>"
+            "description": "<b>Not a lot of people are proposing this, but what about ramping up foreign aid funds to the post-Soviet republics?  It's only been 9 years since most have been sovereign, and Bob Dole knows that they still need help establishing themselves. This money can help align them towards our global cause of defending and spreading democracy.</b>"
         }
     },
     {
@@ -14094,67 +13990,6 @@ campaignTrail_temp.answer_feedback_json = [
     }
 ]
 
-campaignTrail_temp.multiple_endings = true;
-endingPicker = (out, totv, aa, quickstats) => {
-
-    function setImage(url) {
-        if(url == '' || url == null) return;
-        let interval = setInterval(function () {
-            img = document.getElementsByClassName("person_image")[0];
-            if (img != null) {
-                img.src = url;
-                clearInterval(interval);
-            }
-        }, 50);
-    }
-
-    if(quickstats[0] == 538) {
-        setImage("https://i.imgur.com/2MBz1pL.png");
-        return `<h4>I know you cheated. Did you really think you could get away with it?</h4>
-
-get a life bozo`;
-    }
-    if(quickstats[0] > 270) {
-        setImage("https://i.imgur.com/1ho7ZxE.png");
-        return `<div style='overflow-y:scroll;height:310px;'>
-<h4>PRESIDENT DOLE RE-ELECTED BY CLOSE MARGIN; MULTIPLE STATES YET TO BE CALLED. GEPHARDT CONCEDES.</h4>
-
-President Robert J. Dole of Kansas, at the age of 77 years old, has been re-elected, winning his party a second term in the Oval Office, in a close election against the Speaker of the House, Richard Gephardt. In a stark comparison to four years ago, Dole is expected to win the popular vote against his challenger; however, due to the election being close, this can shift; however, his lead is unlikely to change.<br><br>
-According to sources within the Gephardt campaign, they calculated around an hour ago that it was mathematically impossible for them to defeat the President. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. He also gave a concession phone call to President Dole about 5 minutes ago. Dole reportedly received the call with grace and even cracked a few jokes with him.<br><br>It seems the House of Representatives will stay in control of the Democratic Party for at least two more years. The Senate meanwhile, has been projected to remain in GOP control, therefore retaining the divided government which was established in the 1998 midterms.<br><br>This election marks the beginning of the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. He is expected to give his victory speech shortly after Gephardt gives his concession speech. He will be sworn in for his second term on January 20th, 2001, and will serve until January 20th, 2005, as he is term limited. CNN will cover his second inauguration and any potential cabinet changes in the coming days, so please stay tuned.</div>`;
-    }
-    if(quickstats[0] > 320) {
-        setImage("https://i.imgur.com/1ho7ZxE.png");
-        return `<div style='overflow-y:scroll;height:310px;'>
-<h4>DOLE RE-ELECTED DECISIVELY; THE PRESIDENT SWEEPS THROUGHOUT MOST SWING STATES. A HUMILIATED GEPHARDT CONCEDES.</h4>
-
-President Robert J. Dole of Kansas, at the age of 77 years old, has been re-elected, winning his party a second term in the Oval Office, in a close election against the Speaker of the House, Richard Gephardt. In a stark comparison to four years ago, Dole is expected to win the popular vote against his challenger; this is not expected to shift at all, as Dole has won decisively in the electoral college vote.<br><br>According to sources within the Gephardt campaign, they calculated around two hours ago that it was mathematically impossible for them to defeat the President. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. They also knew things were going wrong fairly early in the night after obtaining exit poll results in multiple swing states. He gave a concession phone call to President Dole about 5 minutes ago. Dole reportedly received the call with grace and even cracked a few jokes with him. However, Gephardt understandably entered the call with a terrible mood.<br><br>It seems the House of Representatives will stay in control of the Democratic Party for at least two more years; however, their majority has been whittled down considerably. The Senate meanwhile, has been projected to remain in GOP control, therefore retaining the divided government which was established in the 1998 midterms.<br><br>This election marks the beginning of the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. He is expected to give his victory speech shortly after Gephardt gives his concession speech. He will be sworn in for his second term on January 20th, 2001, and will serve until January 20th, 2005, as he is term limited. CNN will cover his second inauguration and any potential cabinet changes in the coming days, so please stay tuned.</div>`;
-    }
-    if(quickstats[0] < 270) {
-        setImage("https://i.imgur.com/fl2edqb.png");
-        return `<div style='overflow-y:scroll;height:310px;'>
-<h4>SPEAKER GEPHARDT BEATS DOLE; MULTIPLE STATES YET TO BE CALLED. THE PRESIDENT CONCEDES.</h4>
-
-Speaker Richard Andrew Gephardt of Missouri, at the age of 59 years old, has been elected President of the United States, winning his party a term in the Oval Office, in a close election against the incumbent President, Bob Dole. In a stark comparison to four years ago, unlike Dole, he is expected to win both the popular vote and electoral vote against Dole; however, due to the election being close, this lead in the popular vote can shift; however, it is unlikely to change.<br><br>According to sources within the Dole campaign, they calculated around an hour ago that it was mathematically impossible for them to defeat the Speaker. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. He also gave a concession phone call to President-elect Gephardt about 5 minutes ago. Gephardt reportedly received the call with grace, treating the defeated President with dignity.<br><br>It seems the House of Representatives will stay in control of the Democratic Party for at least two more years. The Senate meanwhile, has been projected to remain in GOP control, therefore retaining the divided government which was established in the 1998 midterms.<br><br>This election marks the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. The President-elect is expected to give his victory speech shortly after Dole gives his concession speech. He will be sworn in for his first term on January 20th, 2001, and will serve that term until January 20th, 2005, upon which he is eligible for a second term. CNN will cover his inauguration and his cabinet nominations in the coming days, so please stay tuned.</div>`;
-    }
-    if(quickstats[0] < 202) {
-        setImage("https://i.imgur.com/fl2edqb.png");
-        return `<div style='overflow-y:scroll;height:310px;'>
-<h4>GEPHARDT HANDILY BEATS DOLE; THE SPEAKER SWEEPS THROUGHOUT MOST SWING STATES. A HUMILIATED PRESIDENT DOLE CONCEDES.</h4>
-
-Speaker Richard Andrew Gephardt of Missouri, at the age of 59 years old, has been elected President of the United States, winning his party a term in the Oval Office with a decisive victory against the incumbent President, Bob Dole. In a stark comparison to four years ago, unlike Dole, he is expected to win both the popular vote and electoral vote against Dole. This lead in the popular vote is unlikely to change due to how decisive the victory is in the electoral vote.<br><br>
-According to sources within the Dole campaign, they calculated around two hours ago that it was mathematically impossible for them to defeat the Speaker. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. They also knew things were going wrong fairly early in the night after obtaining exit poll results in multiple swing states. He gave a concession phone call to President-elect Gephardt about 5 minutes ago. Gephardt reportedly received the call with grace, treating the defeated President with dignity. However, Dole understandably entered the call with a terrible mood.<br><br>
-It seems the House of Representatives will stay in control of the Democratic Party for at least two more years, with their lead expanding respectably. The Senate meanwhile, has been projected to remain in GOP control, albeit with a slimmer majority, therefore retaining the divided government which was established in the 1998 midterms.<br><br>This election marks the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. The President-elect is expected to give his victory speech shortly after Dole gives his concession speech. He will be sworn in for his first term on January 20th, 2001, and will serve that term until January 20th, 2005, upon which he is eligible for a second term. CNN will cover his inauguration and his cabinet nominations in the coming days, so please stay tuned.</div>`;
-    }
-    if(quickstats[0] == 269) {
-        setImage("https://i.imgur.com/huDqniy.png");
-        return `<div style='overflow-y:scroll;height:310px;'>
-<h4>CONGRESS CLEARS WAY FOR GEPHARDT TO BE SWORN IN AS PRESIDENT IN THE AFTERMATH OF LAST NOVEMBER'S ELECTION DEADLOCKED. SENATE ELECTS KEMP FOR A SECOND TERM AS VICE PRESIDENT. FIRST BIPARTISAN ADMINISTRATION SINCE 1797.</h4>
-
-The once-in-a-lifetime electoral college deadlock of last November has finally been settled. The Democratic Party's nominee for president, the Speaker of the House, Richard Andrew Gephardt of Missouri, has been elevated to the presidency despite energetic efforts from Minority Leader Dick Armey to convince Blue Dogs to vote for Dole.<br><br>In stark contrast, however, it seems the Senate has decided to re-elect incumbent Vice President Jack Kemp over former Senator Dianne Feinstein of California, who was Gephardt's running mate in the election. This effectively promotes Kemp as the GOP's forefront leader, giving him a lofty position if he decides to run for president in 2004.<br><br>A mixed administration has not been seen since the days of John Adams and Thomas Jefferson, so the situation could become feral easily; however, President-elect Gephardt and Vice President Kemp are already in discussions about how a Gephardt-Kemp administration will look. Sources on Capitol Hill allege that Gephardt has expressed openness to retaining some of the Dole Administration's secretaries, such as Secretary of State Colin Powell.<br><br>This election marks the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. The President-elect is expected to give a speech to the nation at the Capitol shortly. He will be sworn in for his first term on January 20th, 2001, and will serve that term until January 20th, 2005, upon which he is eligible for a second term. CNN will cover his inauguration and his cabinet nominations in the coming days, so please stay tuned.</div>`;
-    }
-}
-
-
 campaignTrail_temp.jet_data = [{
     "mapping_enabled": false,
     "mapping_data": {
@@ -14230,16 +14065,6 @@ campaignTrail_temp.candidate_image_url = "https://files.catbox.moe/up6z3w.png";
 campaignTrail_temp.running_mate_image_url = "https://files.catbox.moe/lb800n.png";
 campaignTrail_temp.candidate_last_name = ''; //Robert J. Dole
 campaignTrail_temp.running_mate_last_name = ''; //Jack F. Kemp
-
-function checkIfCanAddMap() {
-    map = document.getElementById("map_container");
-    
-    if(map) {
-        map.style.backgroundImage = "url('https://files.catbox.moe/5cz2nf.png')"; 
-    }
-}
-
-setInterval(checkIfCanAddMap, 250);
 
 vpTableHistorical = {
     "Robert J. Dole" : "Jack F. Kemp",
@@ -14392,84 +14217,116 @@ cyoAdventure = function (a) {
     }
 }
 
+$("#game_window")[0].style.backgroundColor = "#D4D0C8"
+const customStyling = document.createElement("style");
+customStyling.innerHTML = `
+
+#map_container {
+  background-image: url("https://files.catbox.moe/5cz2nf.png");
+}
+
+#campaign_sign {
+    background-image: url("https://files.catbox.moe/sd918s.png");
+    background-size: cover;
+    border-color: #c9c9c9;    
+    border-width: .01em;
+    margin: 0 auto;
+    background-position: center;
+    width: 100%; 
+    height: 104px; 
+    margin-left: -0.07em;
+  }
+#campaign_sign p {
+    color: rgb(0 0 0 / 0%);
+}
+.inner_window_sign_display {
+  margin: 0;
+    margin-right: 0px;
+    margin-left: 0px;
+  height: 25%;
+  position: relative;
+  width: 34%;
+  height: 28%;
+  background-color: #D4D0C8;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: double;
+  border-color: #C9C9C9;
+}
+#answer_list {
+  height: 25%;
+}
+#state_info {
+  margin: 5% 0 0;
+  height: auto;
+  background-color: #F8F8F8;
+  border-style: double;
+  border-color: #C9C9C9;
+}
+.inner_window_question {
+  background-color: #F8F8F8;
+  margin: 0
+  padding-top: .3em;
+  border-style: double;
+  border-color: #C9C9C9;
+  text-align: center;
+  height: 50%;
+  position: relative;
+  clear: both;
+}
+#menu_container {
+  background-color: #D4D0C8;
+}
+#overall_result_container {
+  background-color: #D4D0C8;
+}
+#state_info h3 {
+  background-color: #7C9CCC;
+}
+#overall_result h3 {
+  background-color: #7C9CCC;
+}
+#state_result h3 {
+  background-color: #7C9CCC;
+}`
+document.head.appendChild(customStyling);
+
+let style = document.createElement('style');
+style.type = 'text/css';
+style.id = 'dynamic-style';
+
+style.innerHTML = `
+  .inner_window_question h3 {
+    background-color: #E9E7E3;
+  }
+  .overlay_window h3 {
+    background-color: #7C9CCC;
+  }
+`;
+
+document.head.appendChild(style);
+
+// Function to inject custom font and apply it to <p> elements
+function applyCustomFont(fontName, fontUrl) {
+    // Inject @font-face rule into the document
+    const style = document.createElement("style");
+    style.innerHTML = `
+        @font-face {
+            font-family: '${fontName}';
+            src: url('${fontUrl}') format('opentype');
+        }
+        b {
+            font-family: '${fontName}', sans-serif !important;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Apply custom font from an OTF file URL
+applyCustomFont("CustomOTFFont", "https://files.catbox.moe/at34sp.otf"); // Replace with actual OTF URL
+
+
 //ENDINGS
-
-
-// Campaign Trail configuration
-campaignTrail_temp.multiple_endings = true;
-construct = (a = 1) => {
-	
-    e.page = e.page + a < e.pages.length ? e.page + a : 0
-    let html = e.header;
-    html += e.pages[e.page] + "<br>";
-    if (e.page > 0) {
-    
-    html += `<button onclick='endingConstructor(a = -1)'>Back</button>`
-    }
-    if (e.page < e.pages.length - 1) {
-    
-    html += `<button onclick='endingConstructor(a = 1)'>Next</button>`
-    }
-    
-    for (i in e.executable) {
-    if (e.executable[i][0] == e.page) {
-        e.executable[i][1]();
-        
-    }
-    }
-    
-    if (e.image == true)
-    setTimeout(()=>{
-      candImg = $(".person_image")[0]
-      if (candImg) {
-        candImg.remove()
-        console.log("TRYING");
-        $("#final_results_description")[0].style = `
-          text-align:right;
-          width: 10%;
-          height:10%;
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-          overflow: auto;
-          color: #000000
-        `
-         console.log("RESULTS UPDATED");
-      }
-    }, 10)
-    else if (e.image)
-    setTimeout(()=>{
-      candImg = $(".person_image")[0];
-      if (candImg) {
-        candImg.src = e.image;
-        console.log("TRYING");
-        $("#final_results_description")[0].style = `
-          text-align:right;
-          width: 50%;
-          height:75%;
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-          overflow: auto;
-          color: #000000
-        `
-         console.log("RESULTS UPDATED");
-      }		
-    }, 10)
-    
-    return html;
-    }
-    
-    endingConstructor = (a = 1) => {
-    $("#final_results_description")[0].innerHTML = construct(a);
-    }
-    
-  // ENDINGS -- this is slightly more reliable than the ending code method
-
-
-
-
-  e.multiple_endings = true;
 
 //This is the only part of the notes that is actually me Onkel Danny - this shit is all chatgpt. Chatgpt is a useful tool. We also used chatgpt for the writing. Halligan Elysium would also like to credit Chatgpt
   function autoHalveVolumeOnce() {
@@ -14512,12 +14369,102 @@ construct = (a = 1) => {
     });
 }
 
+// Campaign Trail configuration
+campaignTrail_temp.multiple_endings = true;
 
-  e.header = "<h1> something went wonjg</h1>";
-  e.pages = ["<p>huh.</p>"];
-  e.page = 0;
+// constructs endings based on header and pages
+construct = (a = 1) => {
+    e.page = e.page + a < e.pages.length ? e.page + a : 0;
 
-  endingPicker = (out, totv, aa, quickstats) => {
+    const parts = [e.header, e.pages[e.page], "<br>"];
+
+    if (e.page > 0) {
+        parts.push(`<button onclick='endingConstructor(-1)'>Back</button>`);
+    }
+    if (e.page < e.pages.length - 1) {
+        parts.push(`<button onclick='endingConstructor(1)'>Next</button>`);
+    }
+
+    for (let i = 0; i < e.executable.length; i++) {
+        if (e.executable[i][0] === e.page) {
+            e.executable[i][1]();
+        }
+    }
+
+    if (e.image !== false) {
+        handleImageUpdate();
+    }
+
+    return parts.join('');
+};
+
+// to handle ending images
+const handleImageUpdate = () => {
+    const updateImage = () => {
+        const candImg = $(".person_image")[0];
+        const resultsDesc = $("#final_results_description")[0];
+
+        if (candImg && resultsDesc) {
+            if (e.image === true) {
+                candImg.remove();
+            } else {
+                candImg.src = e.image;
+                resultsDesc.classList.add("has-scrollbar");
+            }
+
+            resultsDesc.style.cssText = `
+                text-align: left;
+                width: 72%;
+                height: 71%;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                overflow: auto;
+            `;
+
+            return true;
+        }
+        return false;
+    };
+
+    if (updateImage()) return;
+
+    const resultsDesc = $("#final_results_description")[0];
+    if (!resultsDesc) {
+        setTimeout(updateImage, 10);
+        return;
+    }
+
+    const observer = new MutationObserver((mutations, obs) => {
+        if (updateImage()) {
+            obs.disconnect();
+        }
+    });
+
+    observer.observe(resultsDesc, {
+        childList: true,
+        subtree: true
+    });
+
+    setTimeout(() => observer.disconnect(), 1000);
+};
+
+endingConstructor = (a = 1) => {
+    const resultsDesc = $("#final_results_description")[0];
+    if (resultsDesc) {
+        resultsDesc.innerHTML = construct(a);
+    }
+};
+
+// ENDINGS -- this is slightly more reliable than the ending code method
+
+e.multiple_endings = true;
+
+e.header = "<h1> something went wonjg</h1>";
+e.pages = ["<p>huh.</p>"];
+e.page = 0;
+
+endingPicker = (out, totv, aa, quickstats) => {
     //out = "win", "loss", or "tie" for your candidate
     //totv = total votes in entire election
     //aa = all final overall results data
@@ -14531,51 +14478,97 @@ construct = (a = 1) => {
     e.pages = []
     e.header = "";
     e.executable = []
-
-    if ((quickstats[0] >= 320) && (e.player_answers.includes(3374))) { // Landslide Dole win 2
+	
+    if ((quickstats[0] >= 350) && (e.player_answers.includes(3374))) { // Landslide Dole win 2
     e.pages.push(`
+    <h4>DOLE RE-ELECTED IN A LANDSLIDE; THE PRESIDENT COMPETITIVE IN TRADITIONAL DEMOCRATIC STATES. A HUMILIATED GEPHARDT CONCEDES.</h4>
+    <p>President Robert J. Dole of Kansas, at the age of 77 years old, has been re-elected, winning his party a second term in the Oval Office, in the greatest electoral landslide since 1992, against the Speaker of the House, Richard Gephardt. In a stark comparison to four years ago, Dole is expected to win the popular vote against his challenger decisively; this is not expected to shift at all, as Dole has won overwhelmingly in the electoral college vote.</p>
+                <p>According to sources within the Gephardt campaign, they knew everything was going to go wrong once CNN exit polls were revealed to be very much in President Dole's favor. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. They also knew things were going wrong fairly early in the night once usual solid Democratic states were not immediately called to the Speaker's tally. He gave a concession phone call to President Dole about 5 minutes ago. Dole reportedly received the call with grace and even cracked a few jokes with him. However, Gephardt understandably entered the call with a sour mood.</p>
+                <p>It seems the House of Representatives will come back under control of the GOP. The Senate is likewise projected to remain in GOP control, with popular candidates like Governor Mel Carnahan of Missouri falling short by five points than expected, no doubt carried by the President's strong performance in these states.</p>
+                <p>This election marks the beginning of the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. He is expected to give his victory speech shortly after Gephardt gives his concession speech. He will be sworn in for his second term on January 20th, 2001, and will serve until January 20th, 2005, as he is term limited. CNN will cover his second inauguration and any potential cabinet changes in the coming days, so please stay tuned.</p>			
+                `)
+                e.pages.push 
+                (`
+                <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/y8ulig.png>	<br>With the Dole Administration coming to an end after nearly 8 years, highly popular Vice President Jack Kemp wins the Republican nomination with ease, shockingly facing up against Representative Dennis Kucinich, who first came to national attention for his constant, yet unpopular proposals to impeach both President Dole and Vice President Kemp over the War on Terror. Kemp will have to tout the successes of President Bob Dole's governance over the past eight years, and paint Kucinich as a radical, whilst Representative Kucinich must make an argument for his brand of progressivism, while also navigating his controversial nature. Kemp begins with a 6 to 8 point lead in most polls.</p>`)
+    //e.image = ""
+    e.executable.push([0, (() => {e.image = e.image = 'https://files.catbox.moe/7nyfdw.png'})])
+    e.executable.push([1, (() => {
+        nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
+        document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
+        $("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window;
+
+        
+        document.body.style.backgroundSize="cover"
+
+        e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'})])
+    } else if ((quickstats[0] >= 350) && (e.player_answers.includes(12353))) { // Landslide Dole win 2
+    e.pages.push(`
+    <h4>DOLE RE-ELECTED IN A LANDSLIDE; THE PRESIDENT COMPETITIVE IN TRADITIONAL DEMOCRATIC STATES. A HUMILIATED GEPHARDT CONCEDES.</h4>
+    <p>President Robert J. Dole of Kansas, at the age of 77 years old, has been re-elected, winning his party a second term in the Oval Office, in the greatest electoral landslide since 1992, against the Speaker of the House, Richard Gephardt. In a stark comparison to four years ago, Dole is expected to win the popular vote against his challenger decisively; this is not expected to shift at all, as Dole has won overwhelmingly in the electoral college vote.</p>
+                <p>According to sources within the Gephardt campaign, they knew everything was going to go wrong once CNN exit polls were revealed to be very much in President Dole's favor. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. They also knew things were going wrong fairly early in the night once usual solid Democratic states were not immediately called to the Speaker's tally. He gave a concession phone call to President Dole about 5 minutes ago. Dole reportedly received the call with grace and even cracked a few jokes with him. However, Gephardt understandably entered the call with a sour mood.</p>
+                <p>It seems the House of Representatives will come back under control of the GOP. The Senate is likewise projected to remain in GOP control, with popular candidates like Governor Mel Carnahan of Missouri falling short by five points than expected, no doubt carried by the President's strong performance in these states.</p>
+                <p>This election marks the beginning of the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. He is expected to give his victory speech shortly after Gephardt gives his concession speech. He will be sworn in for his second term on January 20th, 2001, and will serve until January 20th, 2005, as he is term limited. CNN will cover his second inauguration and any potential cabinet changes in the coming days, so please stay tuned.</p>			
+                `)
+                e.pages.push 
+                (`
+            <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/8ild51.png>	<br>With the Dole Administration coming to an end after nearly 8 years, Vice President John Danforth wins the Republican nomination with ease, facing up against the Vice President pro tempore of the Senate, Walter Mondale of Minnesota, who was Vice President from 1977 to 1981 under Jimmy Carter, and was previously the party's 1984 nominee, only winning Minnesota, who snatched the Democratic nomination for a second time due to a lack of willing strong candidates to run. Danforth will have to highlight his competence as both Attorney General and Vice President, while Mondale will ironically have to face the same dilemma Reagan had to in 1984: his age, whilst marketing old iconic liberalism to a younger electorate.</p>`)
+    //e.image = ""
+    e.executable.push([0, (() => {e.image = e.image = 'https://files.catbox.moe/7nyfdw.png'})])
+    e.executable.push([1, (() => {
+        nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
+        document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
+        $("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window;
+
+        
+        document.body.style.backgroundSize="cover"
+
+        e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'})])
+    } else if ((quickstats[0] >= 320) && (e.player_answers.includes(3374))) { // Landslide Dole win 2
+        e.pages.push(`
     <h4>DOLE RE-ELECTED DECISIVELY; THE PRESIDENT SWEEPS THROUGHOUT MOST SWING STATES. A HUMILIATED GEPHARDT CONCEDES.</h4>
     <p>President Robert J. Dole of Kansas, at the age of 77 years old, has been re-elected, winning his party a second term in the Oval Office, in a close election against the Speaker of the House, Richard Gephardt. In a stark comparison to four years ago, Dole is expected to win the popular vote against his challenger; this is not expected to shift at all, as Dole has won decisively in the electoral college vote.</p>
                 <p>According to sources within the Gephardt campaign, they calculated around two hours ago that it was mathematically impossible for them to defeat the President. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. They also knew things were going wrong fairly early in the night after obtaining exit poll results in multiple swing states. He gave a concession phone call to President Dole about 5 minutes ago. Dole reportedly received the call with grace and even cracked a few jokes with him. However, Gephardt understandably entered the call with a terrible mood.</p>
                 <p>It seems the House of Representatives will stay in control of the Democratic Party for at least two more years; however, their majority has been whittled down considerably. The Senate meanwhile, has been projected to remain in GOP control, therefore retaining the divided government which was established in the 1998 midterms.</p>
                 <p>This election marks the beginning of the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. He is expected to give his victory speech shortly after Gephardt gives his concession speech. He will be sworn in for his second term on January 20th, 2001, and will serve until January 20th, 2005, as he is term limited. CNN will cover his second inauguration and any potential cabinet changes in the coming days, so please stay tuned.</p>			
                 `)
-                e.pages.push 
-                (`
+        e.pages.push
+            (`
                 <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/0x94rb.png>	<br>With the Dole Administration coming to an end after nearly 8 years, highly popular Vice President Jack Kemp wins the Republican nomination with ease, facing up against Senator Paul Wellstone, who first came to national attention for his 2000 Presidential campaign, and his survival of the plane crash during his 2002 re-election campaign. Kemp will have to tout the successes of President Bob Dole's governance over the past eight years, including the War on Terror, whilst Senator Wellstone must make an argument for liberalism, while also navigating his dovish foreign policies, which is largely against the current public opinion, as well as his stance on NAFTA.</p>`)
-    //e.image = ""
-    e.executable.push([0, (() => {e.image = e.image = 'https://files.catbox.moe/7nyfdw.png'})])
-    e.executable.push([1, (() => {
-        nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
-        document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
-        $("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window;
+        //e.image = ""
+        e.executable.push([0, (() => { e.image = e.image = 'https://files.catbox.moe/7nyfdw.png' })])
+        e.executable.push([1, (() => {
+            nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
+            document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
+            $("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window;
 
-        
-        document.body.style.backgroundSize="cover"
 
-        e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'})])
+            document.body.style.backgroundSize = "cover"
+
+            e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'
+        })])
     } else if ((quickstats[0] >= 320) && (e.player_answers.includes(3375))) { // Landslide Dole win 2
-    e.pages.push(`
+        e.pages.push(`
     <h4>DOLE RE-ELECTED DECISIVELY; THE PRESIDENT SWEEPS THROUGHOUT MOST SWING STATES. A HUMILIATED GEPHARDT CONCEDES.</h4>
     <p>President Robert J. Dole of Kansas, at the age of 77 years old, has been re-elected, winning his party a second term in the Oval Office, in a close election against the Speaker of the House, Richard Gephardt. In a stark comparison to four years ago, Dole is expected to win the popular vote against his challenger; this is not expected to shift at all, as Dole has won decisively in the electoral college vote.</p>
                 <p>According to sources within the Gephardt campaign, they calculated around two hours ago that it was mathematically impossible for them to defeat the President. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. They also knew things were going wrong fairly early in the night after obtaining exit poll results in multiple swing states. He gave a concession phone call to President Dole about 5 minutes ago. Dole reportedly received the call with grace and even cracked a few jokes with him. However, Gephardt understandably entered the call with a terrible mood.</p>
                 <p>It seems the House of Representatives will stay in control of the Democratic Party for at least two more years; however, their majority has been whittled down considerably. The Senate meanwhile, has been projected to remain in GOP control, therefore retaining the divided government which was established in the 1998 midterms.</p>
                 <p>This election marks the beginning of the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. He is expected to give his victory speech shortly after Gephardt gives his concession speech. He will be sworn in for his second term on January 20th, 2001, and will serve until January 20th, 2005, as he is term limited. CNN will cover his second inauguration and any potential cabinet changes in the coming days, so please stay tuned.</p>			
                 `)
-                e.pages.push 
-                (`
+        e.pages.push
+            (`
                 <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/foq0ir.png>	<br>With the Dole Administration coming to an end after nearly 8 years, Vice President John Kasich wins the Republican nomination with ease, facing up against Governor Howard Dean of Vermont who seized the Democratic nomination after demand for a staunch liberal with executive experience. Kasich will have to tout the successes of President Bob Dole's governance over the past eight years, including the War on Terror, whilst Governor Dean must make an argument for New English liberalism, while also navigating his dovish foreign policies, as well as his ambitious healthcare plans.</p>`)
-    //e.image = ""
-    e.executable.push([0, (() => {e.image = e.image = 'https://files.catbox.moe/7nyfdw.png'})])
-    e.executable.push([1, (() => {
-        nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#700016";
-        nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
-        document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
-        $("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window;
-        
-        document.body.style.backgroundSize="cover"
+        //e.image = ""
+        e.executable.push([0, (() => { e.image = e.image = 'https://files.catbox.moe/7nyfdw.png' })])
+        e.executable.push([1, (() => {
+            nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#700016";
+            nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
+            document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
+            $("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window;
 
-        e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'})])
+            document.body.style.backgroundSize = "cover"
+
+            e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'
+        })])
     } else if ((quickstats[0] >= 320) && (e.player_answers.includes(12353))) { // Landslide Dole win 2
         e.pages.push(`
         <h4>DOLE RE-ELECTED DECISIVELY; THE PRESIDENT SWEEPS THROUGHOUT MOST SWING STATES. A HUMILIATED GEPHARDT CONCEDES.</h4>
@@ -14584,41 +14577,43 @@ construct = (a = 1) => {
                     <p>It seems the House of Representatives will stay in control of the Democratic Party for at least two more years; however, their majority has been whittled down considerably. The Senate meanwhile, has been projected to remain in GOP control, therefore retaining the divided government which was established in the 1998 midterms.</p>
                     <p>This election marks the beginning of the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. He is expected to give his victory speech shortly after Gephardt gives his concession speech. He will be sworn in for his second term on January 20th, 2001, and will serve until January 20th, 2005, as he is term limited. CNN will cover his second inauguration and any potential cabinet changes in the coming days, so please stay tuned.</p>			
                     `)
-                    e.pages.push 
-                    (`
+        e.pages.push
+            (`
             <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/gb7i3u.png>	<br>With the Dole Administration coming to an end after nearly 8 years, Vice President John Danforth wins the Republican nomination with ease, facing up against Senator Carol Moseley Braun of Illinois, who snatched the Democratic nomination without warning. Danforth will have to highlight his extensive experience, especially in regards to foreign policy, whilst Moseley Braun must prevent moderate members of the Demcoratic Party from staying home, whilst advocating for mass change in the political arena of the United States. If elected, Moseley Braun would be the first African-American and the first woman to be elected President.</p>`)
-            //e.image = ""
-        e.executable.push([0, (() => {e.image = e.image = 'https://files.catbox.moe/7nyfdw.png'})])
+        //e.image = ""
+        e.executable.push([0, (() => { e.image = e.image = 'https://files.catbox.moe/7nyfdw.png' })])
         e.executable.push([1, (() => {
             nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
 
 
 
-            
-            document.body.style.backgroundSize="cover"
 
-            e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'})])
-        } else if(quickstats[0] >= 270 && quickstats[0] < 320 && (e.player_answers.includes(3374))) { // close win
+            document.body.style.backgroundSize = "cover"
+
+            e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'
+        })])
+    } else if (quickstats[0] >= 270 && quickstats[0] < 320 && (e.player_answers.includes(3374))) { // close win
         e.pages.push(`
         <h4>PRESIDENT DOLE RE-ELECTED BY CLOSE MARGIN; MULTIPLE STATES YET TO BE CALLED. GEPHARDT CONCEDES.</h4>
         <p>President Robert J. Dole of Kansas, at the age of 77 years old, has been re-elected, winning his party a second term in the Oval Office, in a close election against the Speaker of the House, Richard Gephardt. In a stark comparison to four years ago, Dole is expected to win the popular vote against his challenger; however, due to the election being close, this can shift; however, his lead is unlikely to change.</p>
         <p>According to sources within the Gephardt campaign, they calculated around an hour ago that it was mathematically impossible for them to defeat the President. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. He also gave a concession phone call to President Dole about 5 minutes ago. Dole reportedly received the call with grace and even cracked a few jokes with him.</p>
         <p>It seems the House of Representatives will stay in control of the Democratic Party for at least two more years. The Senate meanwhile, has been projected to remain in GOP control, therefore retaining the divided government which was established in the 1998 midterms.</p>
         <p>This election marks the beginning of the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. He is expected to give his victory speech shortly after Gephardt gives his concession speech. He will be sworn in for his second term on January 20th, 2001, and will serve until January 20th, 2005, as he is term limited. CNN will cover his second inauguration and any potential cabinet changes in the coming days, so please stay tuned.</p>`)
-                e.pages.push 
-                (`
+        e.pages.push
+            (`
                 <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/qc6cw3.png>	<br>With the Dole Administration coming to an end after nearly 8 years, in a comparable situation to 1960, two relatively young nominees face each other off for the Presidency. Senator John Edwards of North Carolina came from political obscurity to clinching the Democratic Party's nomination, and House Majority Whip John Kasich of Ohio, the author of the 28th Amendment, and the Dole era balanced budgets, wins the Republican nomination in the face of more established figures, such as John McCain. Kasich will have to tout the successes of President Bob Dole's governance over the past eight years, including the economy, whilst Senator Edwards must make an argument for his vision for America, while also navigating his ambitious education proposals. This election, similar to 1960 and 2000 respectively, is expected to be extremely close.</p>`)
-    e.executable.push([0, (() => {e.image = e.image = 'https://files.catbox.moe/ypqc6v.png'})])
-    e.executable.push([1, (() => {
-        nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
-        document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
-        $("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window;
-        
-        document.body.style.backgroundSize="cover"
+        e.executable.push([0, (() => { e.image = e.image = 'https://files.catbox.moe/ypqc6v.png' })])
+        e.executable.push([1, (() => {
+            nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
+            document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
+            $("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window;
 
-        e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'})])
+            document.body.style.backgroundSize = "cover"
+
+            e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'
+        })])
     } else if (aa[0].electoral_votes < 270 && aa[3].electoral_votes < 270 && aa[2].electoral_votes < 270 && quickstats[0] < 270) { // Deadlock
-    e.pages.push(`
+        e.pages.push(`
     <h4>CONGRESS CLEARS WAY FOR GEPHARDT TO BE SWORN IN AS PRESIDENT IN THE AFTERMATH OF LAST NOVEMBER'S ELECTION DEADLOCK. SENATE ELECTS KEMP FOR A SECOND TERM AS VICE PRESIDENT. FIRST BIPARTISAN ADMINISTRATION SINCE 1797.</h4>
     <p>The once-in-a-lifetime electoral college deadlock of last November has finally been settled. The Democratic Party's nominee for president, the Speaker of the House, Richard Andrew Gephardt of Missouri, has been elevated to the presidency despite energetic efforts from Minority Leader Dick Armey to convince Blue Dogs to vote for Dole.</p>
     <p>In stark contrast, however, it seems the Senate has decided to re-elect incumbent Vice President Jack Kemp over former Senator Dianne Feinstein of California, who was Gephardt's running mate in the election. This effectively promotes Kemp as the GOP's forefront leader, giving him a lofty position if he decides to run for president in 2004.</p>
@@ -14626,20 +14621,21 @@ construct = (a = 1) => {
     <p>This election marks the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. The President-elect is expected to give a speech to the nation at the Capitol shortly. He will be sworn in for his first term on January 20th, 2001, and will serve that term until January 20th, 2005, upon which he is eligible for a second term. CNN will cover his inauguration and his cabinet nominations in the coming days, so please stay tuned.</p>
 
      `)
-e.pages.push(`
+        e.pages.push(`
                 <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/s7n2q8.png><br>In one of the most heated elections in recent history, in the aftermath of the brokered 2000 election, for the first time since 1800, an incumbent President and Vice President are running against each other. The GOP has rallied around Vice President Jack Kemp, who has pulled no punches against the Democratic nominee, incumbent President Dick Gephardt. Vice President Kemp must chart his own path seperate from that of Dole and Gephardt, while President Gephardy must advocate for four more years of liberalism, while also explaining questionable foreign policy decisions in the aftermath of the September 11th Attacks.</p>`)
-    //e.image = ""
-    e.executable.push([0, (() => {e.image = e.image = 'https://files.catbox.moe/oeyypu.png'})])
-    e.executable.push([1, (() => {
-        nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
-        document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
-        $("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window;
+        //e.image = ""
+        e.executable.push([0, (() => { e.image = e.image = 'https://files.catbox.moe/oeyypu.png' })])
+        e.executable.push([1, (() => {
+            nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
+            document.getElementsByClassName("game_header")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_title;
+            $("#game_window")[0].style.backgroundColor = nct_stuff.themes[nct_stuff.selectedTheme].coloring_window;
 
-        
-        document.body.style.backgroundSize="cover"
 
-        e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'})])
-    } 
+            document.body.style.backgroundSize = "cover"
+
+            e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'
+        })])
+    }
     else if (aa[0].electoral_votes >= 270 && aa[0].electoral_votes < 320 && e.player_answers.includes(3374)) { //Dole close loss
         e.pages.push(`
         <h4>SPEAKER GEPHARDT BEATS DOLE; MULTIPLE STATES YET TO BE CALLED. THE PRESIDENT CONCEDES.</h4>
@@ -14650,20 +14646,21 @@ e.pages.push(`
 		
         `)
         e.pages.push
-          (`
+            (`
           <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/dqf30k.png>	<br>With President Dick Gephardt's first term nearly coming to an end, the former Mayor of New York City, Rudy Giuliani, famous for his handling of the September 11th Attacks, rises to head the Republican ticket. Meanwhile, President Gephardt wins his party's nomination for a second term easily. President Gephardt must empthasize his legislative accomplishments and his handling of the War on Terror, while former Mayor Giuliani must explain how he'll be a more effective leader of the War on Terror, attack some of his opponent's questionable foreign policy decisions, while navigating the skeletons in his past, which are sometimes outright hypocritical to his platform.</p>`)
         //e.image = ""
-        e.executable.push([0, (() => {e.image = e.image = 'https://files.catbox.moe/43jiu9.png'})])
+        e.executable.push([0, (() => { e.image = e.image = 'https://files.catbox.moe/43jiu9.png' })])
         e.executable.push([1, (() => {
             nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
 
 
-            
-            document.body.style.backgroundSize="cover"
 
-            e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'})])
-        } else if (aa[0].electoral_votes >= 270 && aa[0].electoral_votes < 320 && (e.player_answers.includes(3375))) { //Dole close loss
-            e.pages.push(`
+            document.body.style.backgroundSize = "cover"
+
+            e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'
+        })])
+    } else if (aa[0].electoral_votes >= 270 && aa[0].electoral_votes < 320 && (e.player_answers.includes(3375))) { //Dole close loss
+        e.pages.push(`
             <h4>SPEAKER GEPHARDT BEATS DOLE; MULTIPLE STATES YET TO BE CALLED. THE PRESIDENT CONCEDES.</h4>
             <p>Speaker Richard Andrew Gephardt of Missouri, at the age of 59 years old, has been elected President of the United States, winning his party a term in the Oval Office, in a close election against the incumbent President, Bob Dole. In a stark comparison to four years ago, unlike Dole, he is expected to win both the popular vote and electoral vote against Dole; however, due to the election being close, this lead in the popular vote can shift; however, it is unlikely to change.</p>
             <p>According to sources within the Dole campaign, they calculated around an hour ago that it was mathematically impossible for them to defeat the Speaker. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. He also gave a concession phone call to President-elect Gephardt about 5 minutes ago. Gephardt reportedly received the call with grace, treating the defeated President with dignity.</p>
@@ -14671,14 +14668,14 @@ e.pages.push(`
             <p>This election marks the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. The President-elect is expected to give his victory speech shortly after Dole gives his concession speech. He will be sworn in for his first term on January 20th, 2001, and will serve that term until January 20th, 2005, upon which he is eligible for a second term. CNN will cover his inauguration and his cabinet nominations in the coming days, so please stay tuned.</p>
             
             `)
-            e.pages.push
-              (`
+        e.pages.push
+            (`
               <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/jwhp11.png>	<br>With President Dick Gephardt's first term nearly coming to an end, the Governor of Florida, Jeb Bush, the son of former President George H.W. Bush, rises to head the Republican ticket. Meanwhile, President Gephardt wins his party's nomination for a second term easily. President Gephardt must empthasize his legislative accomplishments and his handling of the War on Terror, while Governor Bush must explain how the President's liberal policies could set the nation for failure, including some of his opponent's questionable foreign policy deciions, while making the case for his aggressive conservative agenda he implemented in Florida.</p>`)
-            //e.image = ""
-            e.executable.push([0, (() => {e.image = e.image = 'https://files.catbox.moe/43jiu9.png'})])
-            } 
-            else if (aa[0].electoral_votes >= 270 && aa[0].electoral_votes < 320 && (e.player_answers.includes(12353))) { //Dole close loss
-                e.pages.push(`
+        //e.image = ""
+        e.executable.push([0, (() => { e.image = e.image = 'https://files.catbox.moe/43jiu9.png' })])
+    }
+    else if (aa[0].electoral_votes >= 270 && aa[0].electoral_votes < 320 && (e.player_answers.includes(12353))) { //Dole close loss
+        e.pages.push(`
                 <h4>SPEAKER GEPHARDT BEATS DOLE; MULTIPLE STATES YET TO BE CALLED. THE PRESIDENT CONCEDES.</h4>
                 <p>Speaker Richard Andrew Gephardt of Missouri, at the age of 59 years old, has been elected President of the United States, winning his party a term in the Oval Office, in a close election against the incumbent President, Bob Dole. In a stark comparison to four years ago, unlike Dole, he is expected to win both the popular vote and electoral vote against Dole; however, due to the election being close, this lead in the popular vote can shift; however, it is unlikely to change.</p>
                 <p>According to sources within the Dole campaign, they calculated around an hour ago that it was mathematically impossible for them to defeat the Speaker. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. He also gave a concession phone call to President-elect Gephardt about 5 minutes ago. Gephardt reportedly received the call with grace, treating the defeated President with dignity.</p>
@@ -14686,36 +14683,58 @@ e.pages.push(`
                 <p>This election marks the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. The President-elect is expected to give his victory speech shortly after Dole gives his concession speech. He will be sworn in for his first term on January 20th, 2001, and will serve that term until January 20th, 2005, upon which he is eligible for a second term. CNN will cover his inauguration and his cabinet nominations in the coming days, so please stay tuned.</p>
                 
                 `)
-                e.pages.push
-                  (`
+        e.pages.push
+            (`
                   <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/6t3dyp.png>	<br>With President Dick Gephardt's first term nearly coming to an end, the infamous maverick and Vietnam War hero, Senator John McCain of Arizona, accept the call to duty to head the Republican ticket. Meanwhile, President Gephardt wins his party's nomination for a second term easily. President Gephardt must empthasize his legislative accomplishments and his handling of the War on Terror, while former McCain must explain how he'll be a more effective leader of the War on Terror, attack some of his opponent's questionable foreign policy decisions, while painting himself as a nonpartisan leader who will advance a pragmatic agenda to make peoples' lives better.</p>`)
-                //e.image = ""
-                e.executable.push([0, (() => {e.image = e.image = 'https://files.catbox.moe/43jiu9.png'})])
-                e.executable.push([1, (() => {
-                    nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
-        
-        
-                    
-                    document.body.style.backgroundSize="cover"
+        //e.image = ""
+        e.executable.push([0, (() => { e.image = e.image = 'https://files.catbox.moe/43jiu9.png' })])
+        e.executable.push([1, (() => {
+            nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
 
-                    e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'})])
-                } 
-    
-  //Dean Prog Endings  
-    
-    
-  else if (quickstats[0] <= 218 && (e.player_answers.includes(3374))) {
+
+
+            document.body.style.backgroundSize = "cover"
+
+            e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'
+        })])
+    }
+
+    //Dean Prog Endings
+
+    else if (quickstats[0] <= 188 && (e.player_answers.includes(3374))) {
     e.pages.push(`
-            <h4>GEPHARDT HANDILY BEATS DOLE; THE SPEAKER SWEEPS THROUGHOUT MOST SWING STATES. A HUMILIATED PRESIDENT DOLE CONCEDES.</h4>
-            <p>Speaker Richard Andrew Gephardt of Missouri, at the age of 59 years old, has been elected President of the United States, winning his party a term in the Oval Office with a decisive victory against the incumbent President, Bob Dole. In a stark comparison to four years ago, unlike Dole, he is expected to win both the popular vote and electoral vote against Dole. This lead in the popular vote is unlikely to change due to how decisive the victory is in the electoral vote.</p>
-            <p>According to sources within the Dole campaign, they calculated around two hours ago that it was mathematically impossible for them to defeat the Speaker. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. They also knew things were going wrong fairly early in the night after obtaining exit poll results in multiple swing states. He gave a concession phone call to President-elect Gephardt about 5 minutes ago. Gephardt reportedly received the call with grace, treating the defeated President with dignity. However, Dole understandably entered the call with a terrible mood.</p>
-            <p>It seems the House of Representatives will stay in control of the Democratic Party for at least two more years, with their lead expanding respectably. The Senate meanwhile, has been projected to remain in GOP control, albeit with a slimmer majority, therefore retaining the divided government which was established in the 1998 midterms.</p>
+            <h4>GEPHARDT BEATS DOLE; THE SPEAKER COMPETITIVE IN TRADITIONAL REPUBLICAN STATES. A HUMILIATED PRESIDENT DOLE CONCEDES.</h4>
+            <p>Speaker Richard Andrew Gephardt of Missouri, at the age of 59 years old, has been elected President of the United States, winning his party a term in the Oval Office with a landside not seen since 1992, against the incumbent President, Bob Dole. In a stark comparison to four years ago, unlike Dole, he is expected to win both the popular vote and electoral vote against Dole. This lead in the popular vote is unlikely to change due to how wide the victory is in the electoral vote.</p>
+            <p>According to sources within the Dole campaign, they knew everything was going to go wrong once CNN exit polls were revealed to be very much in Speaker Gephardt's favor. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. They also knew things were going wrong fairly early in the night once usual solid Republican states were not immediately called to the President's tally. He gave a concession phone call to Speaker Gephardt about 5 minutes ago. Gephardt reportedly received the call with grace and even cracked a few jokes with him. However, Dole understandably entered the call with a sour mood.</p>
+            <p>It seems the House of Representatives will stay in control of the Democratic Party for at least two more years, with their lead expanding widely. The Senate meanwhile, has nearly flipped to Democratic control, with popular incumbents such as Senator John Ashcroft losing to Governor Mel Carnahan by five points, no doubt carried by the Speaker's strong performance in these states.</p>
             <p>This election marks the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. The President-elect is expected to give his victory speech shortly after Dole gives his concession speech. He will be sworn in for his first term on January 20th, 2001, and will serve that term until January 20th, 2005, upon which he is eligible for a second term. CNN will cover his inauguration and his cabinet nominations in the coming days, so please stay tuned.</p>
             
             `)
             {e.pages.push
              (`
-            <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/kafven.png>	<br>With President Dick Gephardt's first term nearly coming to an end, former Governor Jim Gilmore of Virginia, narrowly wins the Republican nomination. Meanwhile, President Gephardt wins his party's nomination for a second term easily. President Gephardt must empthasize his legislative accomplishments, his handling of the War on Terror, and general popularity, while former Governor Gilmore must emphasize the handling of the September 11th Attacks' affects on Virginia's economy, while finding some way to narrow the President's respectible lead in the polls.</p>`)}
+            <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/a6iibd.png>	<br>With President Dick Gephardt's first term nearly coming to an end, former Governor Lamar Alexander of Tennessee, in his second bid for the Presidency, captures the Republican nomination. Meanwhile, President Gephardt wins his party's nomination for a second term easily. President Gephardt must empthasize his legislative accomplishments, his handling of the War on Terror, and general popularity, while former Governor Alexander must emphasize his brand of conservatism which the media has dubbed 'New Republicanism', whilst exploiting divisions in the Democratic Party.</p>`)}
+    
+            e.executable.push([0, (() => {e.image = e.image = 'https://files.catbox.moe/kxul6r.png'})])
+            e.executable.push([1, (() => {
+            nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
+
+
+            
+            document.body.style.backgroundSize="cover"
+
+            e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'})])
+    } else if (quickstats[0] <= 188 && (e.player_answers.includes(12353))) {
+    e.pages.push(`
+            <h4>GEPHARDT BEATS DOLE; THE SPEAKER COMPETITIVE IN TRADITIONAL REPUBLICAN STATES. A HUMILIATED PRESIDENT DOLE CONCEDES.</h4>
+            <p>Speaker Richard Andrew Gephardt of Missouri, at the age of 59 years old, has been elected President of the United States, winning his party a term in the Oval Office with a landside not seen since 1992, against the incumbent President, Bob Dole. In a stark comparison to four years ago, unlike Dole, he is expected to win both the popular vote and electoral vote against Dole. This lead in the popular vote is unlikely to change due to how wide the victory is in the electoral vote.</p>
+            <p>According to sources within the Dole campaign, they knew everything was going to go wrong once CNN exit polls were revealed to be very much in Speaker Gephardt's favor. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. They also knew things were going wrong fairly early in the night once usual solid Republican states were not immediately called to the President's tally. He gave a concession phone call to Speaker Gephardt about 5 minutes ago. Gephardt reportedly received the call with grace and even cracked a few jokes with him. However, Dole understandably entered the call with a sour mood.</p>
+            <p>It seems the House of Representatives will stay in control of the Democratic Party for at least two more years, with their lead expanding widely. The Senate meanwhile, has nearly flipped to Democratic control, with popular incumbents such as Senator John Ashcroft losing to Governor Mel Carnahan by five points, no doubt carried by the Speaker's strong performance in these states.</p>
+            <p>This election marks the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. The President-elect is expected to give his victory speech shortly after Dole gives his concession speech. He will be sworn in for his first term on January 20th, 2001, and will serve that term until January 20th, 2005, upon which he is eligible for a second term. CNN will cover his inauguration and his cabinet nominations in the coming days, so please stay tuned.</p>
+            
+            `)
+            {e.pages.push
+             (`
+            <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/yg4i42.png>	<br>With President Dick Gephardt's first term nearly coming to an end, orthodox conservative Representative Tom Tancredo of Colorado, narrowly wins the Republican nomination, riding on discontent with the moderate path advocated by Dole and Danforth in 2000 which many argue lead to their landslide defeat. Meanwhile, President Gephardt wins his party's nomination for a second term easily. President Gephardt must empthasize his legislative accomplishments, his handling of the War on Terror, and general popularity, while Representative Tancredo must lean into culture war policies to futher excite the newly dubbed 'Tea Party' movement, while finding a way to get moderate Republicans on board with him.</p>`)}
     
             e.executable.push([0, (() => {e.image = e.image = 'https://files.catbox.moe/kxul6r.png'})])
             e.executable.push([1, (() => {
@@ -14727,8 +14746,36 @@ e.pages.push(`
 
             e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'})])
             }
-else if (quickstats[0] <= 218 && (e.player_answers.includes(3375))) {
-            e.pages.push(`
+
+
+    else if (quickstats[0] <= 218 && (e.player_answers.includes(3374))) {
+        e.pages.push(`
+            <h4>GEPHARDT HANDILY BEATS DOLE; THE SPEAKER SWEEPS THROUGHOUT MOST SWING STATES. A HUMILIATED PRESIDENT DOLE CONCEDES.</h4>
+            <p>Speaker Richard Andrew Gephardt of Missouri, at the age of 59 years old, has been elected President of the United States, winning his party a term in the Oval Office with a decisive victory against the incumbent President, Bob Dole. In a stark comparison to four years ago, unlike Dole, he is expected to win both the popular vote and electoral vote against Dole. This lead in the popular vote is unlikely to change due to how decisive the victory is in the electoral vote.</p>
+            <p>According to sources within the Dole campaign, they calculated around two hours ago that it was mathematically impossible for them to defeat the Speaker. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. They also knew things were going wrong fairly early in the night after obtaining exit poll results in multiple swing states. He gave a concession phone call to President-elect Gephardt about 5 minutes ago. Gephardt reportedly received the call with grace, treating the defeated President with dignity. However, Dole understandably entered the call with a terrible mood.</p>
+            <p>It seems the House of Representatives will stay in control of the Democratic Party for at least two more years, with their lead expanding respectably. The Senate meanwhile, has been projected to remain in GOP control, albeit with a slimmer majority, therefore retaining the divided government which was established in the 1998 midterms.</p>
+            <p>This election marks the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. The President-elect is expected to give his victory speech shortly after Dole gives his concession speech. He will be sworn in for his first term on January 20th, 2001, and will serve that term until January 20th, 2005, upon which he is eligible for a second term. CNN will cover his inauguration and his cabinet nominations in the coming days, so please stay tuned.</p>
+            
+            `)
+        {
+            e.pages.push
+            (`
+            <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/kafven.png>	<br>With President Dick Gephardt's first term nearly coming to an end, former Governor Jim Gilmore of Virginia, narrowly wins the Republican nomination. Meanwhile, President Gephardt wins his party's nomination for a second term easily. President Gephardt must empthasize his legislative accomplishments, his handling of the War on Terror, and general popularity, while former Governor Gilmore must emphasize the handling of the September 11th Attacks' affects on Virginia's economy, while finding some way to narrow the President's respectible lead in the polls.</p>`)
+        }
+
+        e.executable.push([0, (() => { e.image = e.image = 'https://files.catbox.moe/kxul6r.png' })])
+        e.executable.push([1, (() => {
+            nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
+
+
+
+            document.body.style.backgroundSize = "cover"
+
+            e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'
+        })])
+    }
+    else if (quickstats[0] <= 218 && (e.player_answers.includes(3375))) {
+        e.pages.push(`
                     <h4>GEPHARDT HANDILY BEATS DOLE; THE SPEAKER SWEEPS THROUGHOUT MOST SWING STATES. A HUMILIATED PRESIDENT DOLE CONCEDES.</h4>
                     <p>Speaker Richard Andrew Gephardt of Missouri, at the age of 59 years old, has been elected President of the United States, winning his party a term in the Oval Office with a decisive victory against the incumbent President, Bob Dole. In a stark comparison to four years ago, unlike Dole, he is expected to win both the popular vote and electoral vote against Dole. This lead in the popular vote is unlikely to change due to how decisive the victory is in the electoral vote.</p>
                     <p>According to sources within the Dole campaign, they calculated around two hours ago that it was mathematically impossible for them to defeat the Speaker. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. They also knew things were going wrong fairly early in the night after obtaining exit poll results in multiple swing states. He gave a concession phone call to President-elect Gephardt about 5 minutes ago. Gephardt reportedly received the call with grace, treating the defeated President with dignity. However, Dole understandably entered the call with a terrible mood.</p>
@@ -14736,21 +14783,24 @@ else if (quickstats[0] <= 218 && (e.player_answers.includes(3375))) {
                     <p>This election marks the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. The President-elect is expected to give his victory speech shortly after Dole gives his concession speech. He will be sworn in for his first term on January 20th, 2001, and will serve that term until January 20th, 2005, upon which he is eligible for a second term. CNN will cover his inauguration and his cabinet nominations in the coming days, so please stay tuned.</p>
                     
                     `)
-                    {e.pages.push
-                     (`
-                     <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/froanm.png>	<br>With President Dick Gephardt's first term nearly coming to an end, Governor Paul Cellucci of Massachusetts, in an upset wins the Republican nomination. Meanwhile, President Gephardt wins his party's nomination for a second term easily. President Gephardt must empthasize his legislative accomplishments, his handling of the War on Terror, and general popularity, while Governor Cellucci must emphasize his ambitious conservative economic plans for America, while finding some way to narrow the President's respectible lead in the polls, especially given his moderate governance in Massachusetts.</p>`)}
-            
-                    e.executable.push([0, (() => {e.image = e.image = 'https://files.catbox.moe/kxul6r.png'})])
-                    e.executable.push([1, (() => {
-                    nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
-        
-        
-                    
-                    document.body.style.backgroundSize="cover"
+        {
+            e.pages.push
+            (`
+                     <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/froanm.png>	<br>With President Dick Gephardt's first term nearly coming to an end, Governor Paul Cellucci of Massachusetts, in an upset wins the Republican nomination. Meanwhile, President Gephardt wins his party's nomination for a second term easily. President Gephardt must empthasize his legislative accomplishments, his handling of the War on Terror, and general popularity, while Governor Cellucci must emphasize his ambitious conservative economic plans for America, while finding some way to narrow the President's respectible lead in the polls, especially given his moderate governance in Massachusetts.</p>`)
+        }
 
-                    e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'})])
-                    } else if (quickstats[0] <= 218  && (e.player_answers.includes(12353))) {
-                    e.pages.push(`
+        e.executable.push([0, (() => { e.image = e.image = 'https://files.catbox.moe/kxul6r.png' })])
+        e.executable.push([1, (() => {
+            nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
+
+
+
+            document.body.style.backgroundSize = "cover"
+
+            e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'
+        })])
+    } else if (quickstats[0] <= 218 && (e.player_answers.includes(12353))) {
+        e.pages.push(`
                             <h4>GEPHARDT HANDILY BEATS DOLE; THE SPEAKER SWEEPS THROUGHOUT MOST SWING STATES. A HUMILIATED PRESIDENT DOLE CONCEDES.</h4>
                             <p>Speaker Richard Andrew Gephardt of Missouri, at the age of 59 years old, has been elected President of the United States, winning his party a term in the Oval Office with a decisive victory against the incumbent President, Bob Dole. In a stark comparison to four years ago, unlike Dole, he is expected to win both the popular vote and electoral vote against Dole. This lead in the popular vote is unlikely to change due to how decisive the victory is in the electoral vote.</p>
                             <p>According to sources within the Dole campaign, they calculated around two hours ago that it was mathematically impossible for them to defeat the Speaker. That is when he began to prepare his concession speech, which he is set to deliver in under a half hour from now. They also knew things were going wrong fairly early in the night after obtaining exit poll results in multiple swing states. He gave a concession phone call to President-elect Gephardt about 5 minutes ago. Gephardt reportedly received the call with grace, treating the defeated President with dignity. However, Dole understandably entered the call with a terrible mood.</p>
@@ -14758,23 +14808,27 @@ else if (quickstats[0] <= 218 && (e.player_answers.includes(3375))) {
                             <p>This election marks the end of an era as Dole, a decorated World War II veteran, is almost certainly going to be the final president from the Greatest Generation. The President-elect is expected to give his victory speech shortly after Dole gives his concession speech. He will be sworn in for his first term on January 20th, 2001, and will serve that term until January 20th, 2005, upon which he is eligible for a second term. CNN will cover his inauguration and his cabinet nominations in the coming days, so please stay tuned.</p>
                             
                             `)
-                            {e.pages.push
-                             (`
-                             <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/em002q.png>	<br>With President Dick Gephardt's first term nearly coming to an end, Governor Sam Brownback of Kansas, who was just a couple years ago little known, narrowly wins the Republican nomination. Meanwhile, President Gephardt wins his party's nomination for a second term easily. President Gephardt must empthasize his legislative accomplishments, his handling of the War on Terror, and general popularity, while Senator Brownback must emphasize his conservative policies riding on the growing nostolgia for the Reagan era, after his recent death, while finding some way to narrow the President's respectible lead in the polls.</p>`)}
-                    
-                            e.executable.push([0, (() => {e.image = e.image = 'https://files.catbox.moe/kxul6r.png'})])
-                            e.executable.push([1, (() => {
-                            nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
-                
-                
-                            
+        {
+            e.pages.push
+            (`
+                             <p>Please select the election you will run in: <br><select name="2004" id="2004"><option value="0">2004</option></select><br><img src=https://files.catbox.moe/em002q.png>	<br>With President Dick Gephardt's first term nearly coming to an end, Governor Sam Brownback of Kansas, who was just a couple years ago little known, narrowly wins the Republican nomination. Meanwhile, President Gephardt wins his party's nomination for a second term easily. President Gephardt must empthasize his legislative accomplishments, his handling of the War on Terror, and general popularity, while Senator Brownback must emphasize his conservative policies riding on the growing nostolgia for the Reagan era, after his recent death, while finding some way to narrow the President's respectible lead in the polls.</p>`)
+        }
 
-        
-                            e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'})])
-                            }
-    
+        e.executable.push([0, (() => { e.image = e.image = 'https://files.catbox.moe/kxul6r.png' })])
+        e.executable.push([1, (() => {
+            nct_stuff.themes[nct_stuff.selectedTheme].coloring_window = "#D4D0C8";
+
+
+
+
+
+            e.image = e.image = 'https://imgur.com/qIqBzyn.jpg'
+        })])
+    }
+	
+
     return construct(0);
-                        }                   
+}
 
 // Advisor Screen
 // This code was made by Nina for 1956Red/1952Blue
