@@ -37,44 +37,97 @@ e.LosePopup = "You gambled—and lost. The throne belongs to another."
 
 campaignTrail_temp.difficulty_level_json = JSON.parse("[{\"model\": \"campaign_trail.difficulty_level\", \"pk\": 1, \"fields\": {\"name\": \"Beginner\", \"multiplier\": 1.0}}, {\"model\": \"campaign_trail.difficulty_level\", \"pk\": 2, \"fields\": {\"name\": \"Casual\", \"multiplier\": 0.95}}, {\"model\": \"campaign_trail.difficulty_level\", \"pk\": 3, \"fields\": {\"name\": \"Realistic\", \"multiplier\": 0.90}}, {\"model\": \"campaign_trail.difficulty_level\", \"pk\": 4, \"fields\": {\"name\": \"Uphill Battle\", \"multiplier\": 0.85}}]");
 
+// helper to ensure a stylesheet is appended only once
+function ensureStylesheet(url, id) {
+	// if an id is provided and exists, bail out
+	if (id && document.getElementById(id)) return;
+	// if a link with same href already exists, bail out
+	if (document.querySelector('link[rel="stylesheet"][href="' + url + '"]')) return;
+	const link = document.createElement('link');
+	link.rel = 'stylesheet';
+	link.href = url;
+	if (id) link.id = id;
+	document.head.appendChild(link);
+}
 
-let style = document.createElement('style');
-style.type = 'text/css';
-style.id = 'dynamic-style';
+ensureStylesheet('https://unpkg.com/98.css', 'unpkg-98css');
 
-style.innerHTML = `
+function ensureMetaViewport() {
+    if (!document.querySelector('meta[name="viewport"]')) {
+        const m = document.createElement('meta');
+        m.name = 'viewport';
+        m.content = 'width=device-width, initial-scale=1';
+        document.head.appendChild(m);
+    }
+}
+
+applyGlobalStyles.sheets = {};
+
+function applyGlobalStyles(css, id = 'app-theme') {
+    if ('adoptedStyleSheets' in document && 'replaceSync' in CSSStyleSheet.prototype) {
+        if (!applyGlobalStyles.sheets[id]) {
+            applyGlobalStyles.sheets[id] = new CSSStyleSheet();
+            document.adoptedStyleSheets = [...document.adoptedStyleSheets, applyGlobalStyles.sheets[id]];
+        }
+        applyGlobalStyles.sheets[id].replaceSync(css);
+        return;
+    }
+
+    let el = document.getElementById(id);
+    if (!el) {
+        el = document.createElement('style');
+        el.id = id;
+        document.head.appendChild(el);
+    }
+    el.textContent = css;
+}
+
+const css = `
   .campaign_trail_start_emphasis {
     background-color: #7c9ccc;
   }
+  
+  h3 {
+      font-size:1.17em!important;
+  }
+  
+  label {
+      font-size:1em!important;
+      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif!important;
+  }
+  body {display:flex!important;}
+  
+  #game_window {max-width:1000px;}
+  
+  #inner_window_1 ul {
+    padding: .25em 2em .5em 2em;
+  }
+  #election_image {
+	margin: 2em 1em 1em 1em;
+  }
+.person_summary p:first-of-type {
+  margin: 0;
+}
+.content_single .footer h4 {
+  color: #000 !important;
+}
+
+.person_image {
+  width: 24%;
+  height: auto;
+}
+  
 `;
 
-document.head.appendChild(style);
+ensureMetaViewport();
+applyGlobalStyles(css, 'mod-style');
+
 
 next0 = function() {document.getElementById("screen0").style.display = "none";document.getElementById("screen1").style.display = "initial";}
 back0 = function() {document.getElementById("screen0").style.display = "initial";document.getElementById("screen1").style.display = "none";}
 
 
 RecReading=true
-
-
-    document.head.innerHTML += `<link
-      rel="stylesheet"
-      href="https://unpkg.com/98.css"
-    >`
-    
-    document.head.innerHTML += `<style>
-    h3 {
-      font-size:1.17em!important;
-    }
-  
-    label {
-      font-size:1em!important;
-      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif!important;
-    }
-  body {display:flex!important;}
-  
-  #game_window{max-width:1000px;}
-    </style>`
 
 campaignTrail_temp.election_json = [
     {
@@ -410,25 +463,6 @@ campaignTrail_temp.running_mate_json = [
     }
 ]
 
-// the wrapper here is the same that makes sure your music player doesn't exist twice basically
-if(!campaignTrail_temp.observer){
-
-    campaignTrail_temp.observer = true
-
-    // Define the MutationObserver
-    let masterObserver = new MutationObserver(masterFunction);
-    function masterFunction() {
-        masterObserver.disconnect();
-
-        addColor();
-
-        masterObserver.observe(document.body, { childList: true, subtree: true });
-    }
-
-    // Start observing the document with the master observer
-    masterObserver.observe(document.body, { childList: true, subtree: true });
-}
-
 var changeGameDisp = (hide) => {
   disp = "";
   if (hide) {
@@ -461,8 +495,9 @@ s1 {
 	<p><s1><b><font color='#FF4500'>Reddit:</font></b> <span class='flashing-text'>u/ArmyTwoPointOh</span></s1></p>
     <h3><font color='#393647'><s1>Provided Coding Assistance</s1></font></h3>
 	<p><s1><font color='#7FC6A8'>Calgar77 - Helped debug the Code 1</font></p>
-	<p><s1><font color='#b665bc'>_ohas - Coded the endings</font></p>
+	<p><s1><font color='#b665bc'>_ohas - Coded some endings</font></p>
 	<p><font color='#2D4443'><s1>Mangolith - Fixed the font troubles seen with the initial release version.</s1></font></p>
+	<p><font color='#FA5053'><s1>StrawberryMaster - Helped with some endings, helped manage some CSS.</s1></font></p>
 	<h3><s1><font color='#678C4E'>Playtesters</font></s1></h3>
 	<p><s1><span class='flashing-text'>The Deep State.</s1></font></p>
 	<p><s1><font color='#FF2853'>Roadrunner</font></s1></p>
@@ -485,7 +520,7 @@ s1 {
 	<p><s1><font color='#315A60'>DecstarG - For the credits and banner switch button codes.</font></s1></p>
 	<p><s1><font color='#FF4931'>Gardfield - Consulted with on occasion regarding code.</font></s1></p>
 	<p><font color='#0541AD'><s1>ItsAstronomical - Start up sound code, as well as the styling code for the advisor feedback.</s1></font></p>
-	<p><font color='#4d5d53'><s1>Nina_96 - Advisor tab and base music player codes.</s1></font></p>
+	<p><font color='#4d5d53'><s1>Nina_96 - Advisor tab base code.</s1></font></p>
 	<p><font color='#FFCC33'><s1>Sundance 2004 Team - Some styling code.</s1></font></p>
 	<p><font color='#541617'><s1>CTA & Obummer - Creating PWH, which is the mod which got me hooked to TCT, therefore making this mod possible.</s1></font></p>
 	<p><font color='#1D2643'><s1>The 𝐖. Team - Showing us all how far TCT's code can be taken, therefore helping inspire me to get into modding.</s1></font></p>
@@ -632,8 +667,6 @@ document.head.innerHTML += `
   </div>
   `;
 
-    document.head.innerHTML += '<link rel="stylesheet" href="https://unpkg.com/98.css">'
-
     // Select the node that will be observed for mutations
     const windowsAdvisorTargetNode = document.getElementById("game_window");
     
@@ -661,36 +694,6 @@ document.head.innerHTML += `
     // Start observing the target node for configured mutations
     windowsAdvisorObserver.observe(windowsAdvisorTargetNode, windowsAdvisorConfig);
     
-    document.head.innerHTML += `<link
-      rel="stylesheet"
-      href="https://unpkg.com/98.css"
-    >`
-    
-    document.head.innerHTML += `<style>
-    h3 {
-        font-size:1.17em!important;
-    }
-    
-    label {
-        font-size:1em!important;
-    }
-    </style>`
-    
-    document.head.innerHTML += `<link
-      rel="stylesheet"
-      href="https://unpkg.com/98.css"
-    >`
-    
-    document.head.innerHTML += `<style>
-    h3 {
-        font-size:1.17em!important;
-    }
-    
-    label {
-        font-size:1em!important;
-        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif!important;
-    }
-    </style>`
 
 nct_stuff.themes[nct_stuff.selectedTheme].coloring_title = "#7c9ccc";
 
@@ -711,9 +714,6 @@ document.body.background = "https://i.imgur.com/m9sFFRH.png";
 document.body.style.backgroundSize="cover"
 
 document.head.innerHTML += "<style>#results_container {color:#000000;} .inner_window_w_desc {background-color:#d4d0c8!important;}</style>";
-
-quotes = [""]
-  customquote = quotes[Math.floor((Math.random() * quotes.length))]
 
 //#endcode
 
