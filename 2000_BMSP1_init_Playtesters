@@ -37,6 +37,17 @@ e.LosePopup = "You gambled—and lost. The throne belongs to another."
 
 campaignTrail_temp.difficulty_level_json = JSON.parse("[{\"model\": \"campaign_trail.difficulty_level\", \"pk\": 1, \"fields\": {\"name\": \"Beginner\", \"multiplier\": 1.0}}, {\"model\": \"campaign_trail.difficulty_level\", \"pk\": 2, \"fields\": {\"name\": \"Casual\", \"multiplier\": 0.95}}, {\"model\": \"campaign_trail.difficulty_level\", \"pk\": 3, \"fields\": {\"name\": \"Realistic\", \"multiplier\": 0.90}}, {\"model\": \"campaign_trail.difficulty_level\", \"pk\": 4, \"fields\": {\"name\": \"Uphill Battle\", \"multiplier\": 0.85}}]");
 
+campaignTrail_temp.modBoxTheme = {
+     "header_image_url": "https://files.catbox.moe/d76yne.png",
+     "header_color": "#000885",
+     "header_text_color": "#ffffff",
+     "description_text_color": "#000000",
+     "description_background_color": "#ffffff",
+     "main_color": "#dedede",
+     "secondary_color": "#bebebe",
+     "ui_text_color": "#FFFFFF"
+}
+
 // helper to ensure a stylesheet is appended only once
 function ensureStylesheet(url, id) {
 	// if an id is provided and exists, bail out
@@ -618,42 +629,61 @@ if (!campaignTrail_temp.chime) {
     music.play();
     campaignTrail_temp.chime = true;
 }
+// === Overlay: create once and style it ===
+const OVERLAY_ID = "overlay-image-toggle";
 
-// Inject a full-page overlay image that doesn't block interactions
-const overlayImage = document.createElement("img");
-overlayImage.src = "https://file.garden/aBFeR_WWax4tG4dU/crt1.png"; // Change to desired image
-overlayImage.classList.add("overlay-image");
+(function ensureOverlayAndStyles() {
+  // Inject style using a <style> tag (safer than innerHTML +=)
+  if (!document.getElementById("overlay-style-block")) {
+    const styleTag = document.createElement("style");
+    styleTag.id = "overlay-style-block";
+    styleTag.textContent = `
+      .overlay-image {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          object-fit: cover;
+          opacity: 0.4; /* Adjust transparency */
+          pointer-events: none; /* Elements below remain interactive */
+          z-index: 999;
+      }
+      .inner_inner_window h3 { font-size: 14px !important; font-weight: normal !important; }
+      form[name="question"] label { font-size: 14px !important; font-weight: normal !important; }
+      b { font-weight: normal !important; }
+    `;
+    document.head.appendChild(styleTag);
+  }
 
-document.body.appendChild(overlayImage);
+  // Inject overlay image if it doesn't exist
+  if (!document.getElementById(OVERLAY_ID)) {
+    const overlayImage = document.createElement("img");
+    overlayImage.id = OVERLAY_ID;
+    overlayImage.src = "https://file.garden/aBFeR_WWax4tG4dU/crt1.png"; // your image
+    overlayImage.classList.add("overlay-image");
+    document.body.appendChild(overlayImage);
+  }
+})();
 
-// Add styling dynamically to ensure it stays on top but non-interactive
-document.head.innerHTML += `
-<style>
-    .overlay-image {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
-        opacity: 0.4; /* Adjust transparency */
-        pointer-events: none; /* Ensures elements below remain interactive */
-        z-index: 999;
-    }
+// === Button: toggle overlay ON/OFF ===
+function toggleOverlay() {
+  const overlay = document.getElementById(OVERLAY_ID);
+  if (!overlay) return;
 
-    .inner_inner_window h3 {
-        font-size: 14px !important;
-        font-weight: normal !important;
-    }
-    form[name="question"] label {
-        font-size: 14px !important;
-        font-weight: normal !important;
-    }
-    b {
-        font-weight: normal !important;
-    }
-</style>
-`;
+  const isHidden = overlay.style.display === "none";
+  overlay.style.display = isHidden ? "block" : "none";
+  button.textContent = `CRT Overlay: ${isHidden ? "ON" : "OFF"}`;
+}
+
+// Reuse your footer location + button styling
+const footer = $(".footer")[0] || document.body; // fallback to body if needed
+var button = document.createElement("button");
+button.style.cssText = "font-weight: bold; height:19.49px; position: static; right: 770px; top: 0px;";
+button.textContent = "CRT Overlay: ON"; // initial state is visible
+footer.insertBefore(button, footer.firstChild);
+button.onclick = toggleOverlay;
+
 
 
 
@@ -1323,18 +1353,15 @@ tooltipList = [
     {searchString: "Clinton", explanationText: "<img src=https://files.catbox.moe/8xo8p1.png> 42nd President of the United States (1993-1997)"},
     {searchString: "Gore", explanationText: "<img src=https://files.catbox.moe/hf3s3j.png> 45th Vice President of the United States (1993-1997), served with Bill Clinton. Media suspects he'll run in 2000, though he has ruled this out, at least at the moment."},
     {searchString: "Blue Dogs", explanationText: "<img src=https://files.catbox.moe/mhju06.png> Moderate to conservative Democrats mainly based in the South. The noose over the past couple of decades has been slowly tightening around them with the GOP rapidly gaining strength in the region."},
-    {searchString: "Balanced Budget Amendment", explanationText: "<img src=https://files.catbox.moe/67wclr.png> Newt Gingrich and John Kasich's passion project."},
     {searchString: "Kasich", explanationText: "<img src=https://files.catbox.moe/vtuxut.png> US Representative from Ohio, and the Republican Party's budget czar. A favorite of Newt Gingrich, also a major proponent of the 1994 Republican Revolution."},
     {searchString: "Gingrich", explanationText: "<img src=https://files.catbox.moe/cbjnon.png> The controversial Speaker of the House. Was one of the first Republicans to win a House Seat in post-Reconstruction Era Georgia, for better or worse."},
     {searchString: "Lott", explanationText: "<img src=https://files.catbox.moe/k8b82h.png> Senate Majority Leader, US Senator from Mississippi, generally seen as a competent leader. Though, you may want to watch out for what he says."},
     {searchString: "severe wounds", explanationText: "<img src=https://files.catbox.moe/twqkrh.png> In April 1945, while fighting near Castel d'Aiano, Italy, you were severely wounded by a German shell, shattering your collarbone and part of the spine. Paralyzed from the neck down and near death from infection and fever, you survived thanks to an early use of streptomycin. Struggling to accept your condition, you were inspired by Dr. K, who performed multiple surgeries free of charge."},
     {searchString: "Dr. Hampar Kelikian", explanationText: "<img src=https://files.catbox.moe/fgbdrs.png> AKA Dr. K, a survivor of the Armenian Genocide, who performed the fateful surgery which restored partial mobility to your right arm. Because of his story, you've been a relentless advocate for Armenians."},
     {searchString: "Tony Blair", explanationText: "<img src=https://files.catbox.moe/ds0c3k.png> Bill Clinton with a funny accent."},
-    {searchString: "Queen Elizabeth II", explanationText: "<img src=https://files.catbox.moe/20wca2.png> The dancing Queen."},
     {searchString: "Boris Yeltsin", explanationText: "<img src=https://files.catbox.moe/rbu0n9.png> A drunkard who stumbled into the Kremlin one day."},
     {searchString: "Aslan Mashkadov", explanationText: "<img src=https://files.catbox.moe/ofwekw.png> President of Ichkeria, former Soviet Army artillery officer, who got famous for leading the Chechen forces in defending the seperatist Republic against Russian invaders. Due to his fame and prestige for that, he was elected President."},
     {searchString: "brutal war", explanationText: "<img src=https://files.catbox.moe/lbuw0b.png> Joƶalla ya marşo."},
-    {searchString: "Chechen Republic of Ichkeria", explanationText: "<img src=https://files.catbox.moe/kx609j.png> Formerly a part of the Checheno-Ingush ASSR, a part of the Soviet Union, the Republic is an unrecognized nation in the Northern Caucasus, which declared independence in 1991, under the leadership of Dzhokhar Dudayev, who was killed during the failed Russian invasion. Ichkeria is only recognized by the Taliban regime, though President Mashkadov considers their regime illegitimate. Estonia passed a law to recognize them, however Russian lobbying stopped the law from taking affect."},
     {searchString: "Powell", explanationText: "<img src=https://files.catbox.moe/7y5zwe.png> The true star of the show."},
     {searchString: "Shamil Basayev", explanationText: "<img src=https://files.catbox.moe/2ka3ul.png> An infamous Chechen general, warlord, accused terrorist, former Presidential candidate. He was also involved in the wars in Abkhazia and Karabakh."},
     {searchString: "Timothy McVeigh", explanationText: "<img src=https://files.catbox.moe/munhfi.png> Gulf War combat veteran, white supremacist, domestic terrorist, and the physical embodiement of evil."},
@@ -1345,7 +1372,6 @@ tooltipList = [
     {searchString: "Governor Tom Ridge", explanationText: "<img src=https://files.catbox.moe/vpu2dq.png> The popular Governor of Pennsylvania and political ally of yours, who will campaign for the ticket and downballot for the party with you."},
     {searchString: "Arnold Schwarzenegger", explanationText: "<img src=https://files.catbox.moe/trjxlv.png> The physical embodiement of the modern American Dream and the strength of America abroad."},
     {searchString: "Saddam Hussein", explanationText: "<img src=https://files.catbox.moe/e16abu.png> One of the world's most infamous dictators of the 20th cenutry, Saddam Hussein and his Ba'ath Party rules Iraq with an iron fist, despite losing the Gulf War in 1991, being exhausted from the Iran-Iraq War, and sporradic uprisings up north by the Kurds."},
-    {searchString: "WMD", explanationText: "<img src=https://files.catbox.moe/mbgojr.png> The abbriviation of Weapons of Mass Destruction. You know all about this very well already."},
     {searchString: "no fly zone", explanationText: "<img src=https://files.catbox.moe/7r92mp.png> The airspace in Southern Iraq and Iraqi Kurdistan are declared to be no fly zones, meaning any Iraqi Air Force aircraft detected flying there would be intercepted by Coalition fighters."},
     {searchString: "Peshmerga", explanationText: "<img src=https://files.catbox.moe/xs4t9p.png> The blanket term used to refer to Kurdish militias fighting for sovreignty, mainly against Iraq. They are mainly divided between the conservative Kurdistan Democratic Party, which enjoys US support, and the Kurdistan Workers' Party, which is socialistic and anti-Turkish. Notably, men and women are seen as equals in the Peshmerga, which is highly unusual for military formations in the region."},
     {searchString: "Dick Armey", explanationText: "<img src=https://files.catbox.moe/rvof6q.png> US Representative from Texas and the House Minority Leader. He replaced Newt Gingrich after he resigned in disgrace after losing the House in '98. Previously served as Majority Leader under Gingrich."},
@@ -1818,4 +1844,3 @@ document.getElementById("bottomBar").style.height = "60px";
 banners = ["https://files.catbox.moe/ghx4lx.png","https://files.catbox.moe/fdme8o.png","https://files.catbox.moe/ndppl4.png","https://files.catbox.moe/zpc1my.png","https://files.catbox.moe/jv9ced.png"]
 bannerad = banners[Math.floor((Math.random() * banners.length))]
 document.getElementById("bottomBar").innerHTML = `<img src='`+bannerad+`'/>`
-
