@@ -30,12 +30,12 @@ campaignTrail_temp.global_parameter_json = [
 e.SelectText = ""
 e.CandidText = "Select your Presidential nominee:"
 e.VpText = "Select your Vice Presidential nominee:"
-document.getElementById("inner_window_1").children[1].innerHTML = `<li>Welcome to <b>𝙱𝚘𝚋'𝚜 𝙼𝚊𝚌𝚊𝚛𝚎𝚗𝚊.</b></li><li>This mod explores a world where Senator Bob Dole of Kansas, against all odds, beat Bill Clinton's bid for re-election in 1996, becoming the 43rd President of the United States.</li><li>You have the option to play as President Dole, or his eventual opponent in 2000, Representative Dick Gephardt of Missouri.</li><li>As Dole, you will have to make decisions which impact the country domestically, especially in regards to economics, and across the world, in regards to combatting foreign terrorism and dictators. Eventually, you will have to run for re-election.</li><li>As Gephardt, you will have to rally the House Democrats in the aftermath of the by all means discouraging results of the 1996 elections, and lead them to striking back against Dole and Gingrich, leading up to running for the Democratic nomination in 2000.</li><li>Your decisions will affect the popularity and electability of the candidate you are playing as.</li><li>Content Warning: At times, vulgar language is present in the mod, however it isn't excessive. But if you do care about that, consider yourself warned.</li><li>Browser Compatibility: This mod's font does not display correctly on Firefox. Tested browsers which are compatible are Google, Microsoft Edge, and Opera GX.</li>`;
+document.getElementById("inner_window_1").children[1].innerHTML = `<li>Welcome to <b>𝙱𝚘𝚋'𝚜 𝙼𝚊𝚌𝚊𝚛𝚎𝚗𝚊.</b></li><li>This mod explores a world where Senator Bob Dole of Kansas, against all odds, beat Bill Clinton's bid for re-election in 1996, becoming the 43rd President of the United States.</li><li>You have the option to play as President Dole, or his eventual opponent in 2000, Representative Dick Gephardt of Missouri.</li><li>As Dole, you will have to make decisions which impact the country domestically, especially in regards to economics, and across the world, in regards to combatting foreign terrorism and dictators. Eventually, you will have to run for re-election.</li><li>As Gephardt, you will have to rally the House Democrats in the aftermath of the by all means discouraging results of the 1996 elections, and lead them to striking back against Dole and Gingrich, leading up to running for the Democratic nomination in 2000.</li><li>Your decisions will affect the popularity and electability of the candidate you are playing as.</li><li>Content Warning: At times, vulgar language is present in the mod, however it isn't excessive. But if you do care about that, consider yourself warned.</li><li>Browser Compatibility: This mod's font does not display correctly on Firefox. Almost every other browser should display the font as intended.</li>`;
 e.ElectionPopup = "The deal is done. The game is over. And now, the consequences come."
 e.WinPopup = "The throne is yours, yet the kingdom trembles. Rule wisely."
 e.LosePopup = "You gambled—and lost. The throne belongs to another."
 
-campaignTrail_temp.difficulty_level_json = JSON.parse("[{\"model\": \"campaign_trail.difficulty_level\", \"pk\": 1, \"fields\": {\"name\": \"Beginner\", \"multiplier\": 1.0}}, {\"model\": \"campaign_trail.difficulty_level\", \"pk\": 2, \"fields\": {\"name\": \"Casual\", \"multiplier\": 0.95}}, {\"model\": \"campaign_trail.difficulty_level\", \"pk\": 3, \"fields\": {\"name\": \"Realistic\", \"multiplier\": 0.90}}, {\"model\": \"campaign_trail.difficulty_level\", \"pk\": 4, \"fields\": {\"name\": \"Uphill Battle\", \"multiplier\": 0.85}}]");
+campaignTrail_temp.difficulty_level_json = JSON.parse("[{\"model\": \"campaign_trail.difficulty_level\", \"pk\": 1, \"fields\": {\"name\": \"Beginner\", \"multiplier\": 1.0}}, {\"model\": \"campaign_trail.difficulty_level\", \"pk\": 2, \"fields\": {\"name\": \"Casual\", \"multiplier\": 0.95}}, {\"model\": \"campaign_trail.difficulty_level\", \"pk\": 3, \"fields\": {\"name\": \"Realistic (Default)\", \"multiplier\": 0.90}}, {\"model\": \"campaign_trail.difficulty_level\", \"pk\": 4, \"fields\": {\"name\": \"Uphill Battle\", \"multiplier\": 0.85}}]");
 
 campaignTrail_temp.modBoxTheme = {
      "header_image_url": "https://files.catbox.moe/d76yne.png",
@@ -1489,7 +1489,7 @@ function setupMusicPlayer() {
     "https://files.catbox.moe/msyl1k.mp3"
   ));
 
-  const playlist1 = new Playlist("FM 90.1");
+  const playlist1 = new Playlist("FM 90.1 (Steady Tunes)");
   playlist1.addSong(new Song(
     "I Believe I Can Fly", "R. Kelly ‧ 1997",
     "https://files.catbox.moe/xrwsna.png",
@@ -1531,7 +1531,7 @@ function setupMusicPlayer() {
     "https://files.catbox.moe/xrwax1.mp3"
   ));  
 
-  const playlist2 = new Playlist("FM 93.1");
+  const playlist2 = new Playlist("FM 93.1 (Intense Tunes)");
   playlist2.addSong(new Song(
     "Paranoid Android", "Radiohead ‧ 1997",
     "https://files.catbox.moe/dj4eo9.png",
