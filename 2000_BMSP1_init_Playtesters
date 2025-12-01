@@ -1408,8 +1408,8 @@ tooltipList = [
     {searchString: "Governor Bush", explanationText: "<img src=https://files.catbox.moe/0ri221.png> The 43rd Governor of Florida, the Governor of Texas' younger brother, and most importantly, the second son of the former President of the United States."},
     {searchString: "Bob’s Macarena", explanationText: "<img src=https://files.catbox.moe/c7xm64.png> You're playing this mod right now, doofus."},
     {searchString: "baby killer", explanationText: "<img src=https://files.catbox.moe/ydhtj4.png> Why?"},
-    {searchString: "gun-grabbing lesbian", explanationText: "<img src=https://files.catbox.moe/5ntgi3.png> WHY?"}
-
+    {searchString: "gun-grabbing lesbian", explanationText: "<img src=https://files.catbox.moe/5ntgi3.png> WHY?"},
+    {searchString: "John Edwards", explanationText: "<img src=https://files.catbox.moe/61ljx7.png> For such a young man, it oddly seems that there's something Presidential about him..."}
         
 ];
 
