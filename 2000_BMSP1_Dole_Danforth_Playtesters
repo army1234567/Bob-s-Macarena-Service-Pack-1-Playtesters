@@ -154,7 +154,7 @@ campaignTrail_temp.questions_json = [
         "pk": 348,
         "fields": {
             "priority": 2,
-            "description": "<b>Timothy McVeigh has just been convicted for the 1995 Oklahoma City bombing, a horrific act of domestic terrorism that claimed the lives of at least 167 innocent people and left nearly 800 others wounded. His actions, driven by a deep distrust of the federal government and fueled by his anger over events like the Waco Siege and the Ruby Ridge standoff, have left a permanent scar on the nation. As prosecutors seek the death penalty for McVeigh, a journalist from CNN asks you what measures you’ll take to prevent future tragedies like this.</b>",
+            "description": "<b>Timothy McVeigh has just been convicted for the 1995 Oklahoma City bombing, a horrific act of domestic terrorism that claimed the lives of at least 167 innocent people and left nearly 800 others wounded. His actions, driven by a deep distrust of the federal government and fueled by his anger over events like the Waco Siege and the Ruby Ridge standoff, have left a permanent scar on the nation. Soon after Attorney General John Danforth announced he directed the Justice Department to seek the death penalty for McVeigh, a journalist from CNN asks you what measures you’ll take to prevent future tragedies like this.</b>",
             "likelihood": 1
         }
     },
@@ -14079,7 +14079,7 @@ campaignTrail_temp.answer_feedback_json = [
         "fields": {
             "answer": 3314,
             "candidate": 77,
-            "answer_feedback": "At the end of the night, you're happy with the Senate results. Feingold and Reid are packing their bags, unfortunately, D'Amato is too, though by a thinner margin than anticipated. The House results, though, aren't the nicest. The Democrats won enough races to take the House, thus ending our trifecta."
+            "answer_feedback": "At the end of the night, you're happy with the Senate results. Feingold and Reid are packing their bags, unfortunately, D'Amato is too, though by a thinner margin than anticipated. The House results, though, aren't the nicest. The Democrats won enough races to take the House, thus ending our trifecta. Among those elected is one young lawyer by the name of John Edwards..."
         }
     },
     {
@@ -15754,10 +15754,10 @@ var pictureDict2 = pictureDict2 || { 0: "https://files.catbox.moe/fswvy9.png" };
 // FYI: Everything is bolded with <b></b> tags because that's a part of the method I used in BM's Code 2 to get the Window 98 font. You'll probably want to take that out unless if you want everything to appear bolded.
 
 var advisors = [
-    { pk: 20001, name: "<b><strong>Scott Reed</strong></b>", picture: "https://files.catbox.moe/4tbg2u.png" },
-    { pk: 20002, name: "<b><strong>Elizabeth Dole</strong></b>", picture: "https://files.catbox.moe/q8vzzo.png" },
-    { pk: 20003, name: "<b><strong>Trent Lott</strong></b>", picture: "https://files.catbox.moe/t3t00j.png" },
-    { pk: 20004, name: "<b><strong>Dick Armey</strong></b>", picture: "https://files.catbox.moe/iylfy8.png" },
+    { pk: 20001, name: "<b><strong>Scott Reed</strong></b>", picture: "https://files.catbox.moe/vduikg.png" },
+    { pk: 20002, name: "<b><strong>Elizabeth Dole</strong></b>", picture: "https://files.catbox.moe/zszmb5.png" },
+    { pk: 20003, name: "<b><strong>Trent Lott</strong></b>", picture: "https://files.catbox.moe/ggr767.png" },
+    { pk: 20004, name: "<b><strong>Dick Armey</strong></b>", picture: "https://files.catbox.moe/9kwout.png" },
 ];
 
 // Advice List order: Advisor PK / Question PK / Advice text
@@ -15780,7 +15780,7 @@ var adviceList = [
 
   {advisor_pk:20001,question_pk:343,advice:"<b>Obviously you should meet Blair, but really, with all due respect, who gives a damn about Chechnya over here? It's not worth our attention.</b>"},
   {advisor_pk:20002,question_pk:343,advice:"<b>Do what you think is right, but I can't possibly ignore the inhumane conditions innocent people are living in down in Grozny.</b>"},
-  {advisor_pk:20003,question_pk:343,advice:"<b>We could use this occasion to tighten our relationship with Boris Yeltsin. He was very buddy-buddy with Clinton, so perhaps we could show him you have common interests with him?</b>"},
+  {advisor_pk:20003, question_pk:343, advice:"<b>We could use this occasion to tighten our relationship with Boris Yeltsin. He was very buddy-buddy with Clinton, so perhaps we could show him you have common interests with him? Anyways, where on god's earth is my paycheck from Boris?</b>"},
   {advisor_pk:20004,question_pk:343,advice:"<b>Most people don't even know where Chechnya is located on a map. It's insignificant. We have more pressing matters to worry about.</b>"},
 
   {advisor_pk:20001,question_pk:348,advice:"<b>It probably isn't worth opening a can of worms with McVeigh's type of crowd, so be careful about how you go about this one.</b>"},
